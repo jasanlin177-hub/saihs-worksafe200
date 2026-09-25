@@ -71,7 +71,31 @@ netlify deploy --prod     # 正式（15 credits／次，免費方案每月上限
 |---|---|
 | `STATS_ADMIN_KEY` | 使用統計報表的通關碼。未設定時統計 API 一律拒絕存取。 |
 
-設定後以 `https://<站台網址>/?admin=<通關碼>` 查看報表。
+設定時務必勾選 **Contains secret values**，否則該值會顯示在 Netlify 的 UI、API 與
+build log 裡。設定後以 `https://<站台網址>/?admin=<通關碼>` 查看報表。
+
+### 忘記通關碼怎麼辦
+
+勾了 secret 之後連自己也看不到值，但**不需要舊密碼就能重設**：
+
+1. Netlify 後台 → `Site configuration → Environment variables`
+2. `STATS_ADMIN_KEY` 右側 `Options → Edit`，直接填入新值
+3. 重新部署一次才會生效（每次 production deploy 耗 15 credits）
+
+建議平常就把帶通關碼的完整網址存成瀏覽器書籤，避免為了重設密碼而多花一次部署額度。
+
+## Netlify 免費方案額度
+
+| 項目 | 消耗 |
+|---|---|
+| Production deploy | **15 credits／次**（每月 300 credits，約 20 次） |
+| Deploy Preview（`netlify deploy` 不加 `--prod`） | 0 credits |
+| Bandwidth | 20 credits／GB |
+| Web requests | 2 credits／1 萬次 |
+
+額度用盡會導致**整個站台暫停**，因此請累積多項修改後再一次部署，
+並善用免費的 Deploy Preview 驗證。一個班級的日常使用量（約 40 人）
+每月僅消耗數個 credits，主要開銷來自部署次數。
 
 ## 隱私
 
