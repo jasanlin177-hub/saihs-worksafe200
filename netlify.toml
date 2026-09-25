@@ -1,0 +1,60 @@
+functionsDirectory = "C:\\Users\\機動小隊\\Projects\\工安題庫\\deploy\\netlify\\functions"
+functionsDirectoryOrigin = "config-v1"
+headersOrigin = "config"
+redirectsOrigin = "config"
+plugins = []
+
+[build]
+publish = "C:\\Users\\機動小隊\\Projects\\工安題庫\\deploy\\public"
+publishOrigin = "config"
+functions = "C:\\Users\\機動小隊\\Projects\\工安題庫\\deploy\\netlify\\functions"
+
+  [build.environment]
+
+  [build.processing]
+
+    [build.processing.css]
+
+    [build.processing.html]
+
+    [build.processing.images]
+
+    [build.processing.js]
+
+  [build.services]
+
+[functions]
+
+  [functions."*"]
+
+[[headers]]
+for = "/index.html"
+
+  [headers.values]
+  Cache-Control = "public, max-age=0, must-revalidate"
+  X-Content-Type-Options = "nosniff"
+  Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[redirects]]
+from = "/api/*"
+to = "/.netlify/functions/:splat"
+status = 200
+force = true
+
+  [redirects.query]
+
+  [redirects.conditions]
+
+  [redirects.headers]
+
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
+force = false
+
+  [redirects.query]
+
+  [redirects.conditions]
+
+  [redirects.headers]
