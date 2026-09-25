@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>工安 × 工作倫理｜速成闖關</title>
+<meta name="description" content="松山工農 機一仁｜勞動部官方固定題庫 200 題，電玩闖關風格的工場安全衛生與工作倫理複習測驗。">
+<!-- PWA：可加到手機主畫面、離線可刷題 -->
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0a0a1a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="工安速成">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@700;900&family=Noto+Sans+TC:wght@500;700;900&display=swap" rel="stylesheet">
@@ -405,6 +414,20 @@ ul.tight li{margin:5px 0}
 .badge .bn{font-size:12.5px;font-weight:900;margin-top:6px}
 .badge.locked .bn{color:var(--mut)}
 .badge .bd{font-size:10.5px;color:var(--mut);margin-top:3px;line-height:1.4}
+
+/* 「加到主畫面」提示列 */
+.a2hs{position:fixed;left:12px;right:12px;bottom:12px;z-index:170;display:flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,rgba(21,21,58,.98),rgba(30,15,55,.98));
+  border:2px solid var(--cyan);border-radius:16px;padding:12px 14px;
+  box-shadow:0 8px 30px rgba(0,0,0,.5),0 0 22px rgba(0,240,255,.25);
+  transform:translateY(130%);transition:transform .35s cubic-bezier(.2,1.2,.3,1);max-width:520px;margin:0 auto}
+.a2hs.show{transform:none}
+.a2hs-ico{font-size:28px;line-height:1;flex-shrink:0}
+.a2hs-txt{flex:1;min-width:0}
+.a2hs-txt b{display:block;font-size:15.5px;font-weight:900;color:var(--txt)}
+.a2hs-txt small{display:block;font-size:12.5px;color:var(--sub);margin-top:1px}
+.a2hs-no{flex-shrink:0;background:none;border:none;color:var(--mut);font-size:17px;cursor:pointer;padding:4px 6px}
+.a2hs-no:hover{color:var(--txt)}
 
 /* 公益廣告：均一（綠色黑板風，比照官網捐款區塊） */
 .ad-tag-row{font-size:11.5px;font-weight:900;color:var(--mut);letter-spacing:2px;margin:14px 0 6px}

@@ -3,7 +3,7 @@
 (function () {
   "use strict";
 
-  var LS = { star: "wsafe.star.v2", done: "wsafe.done.v2", hist: "wsafe.hist.v2", theme: "wsafe.theme.v2", nick: "wsafe.nick.v1", sound: "wsafe.sound.v1", prof: "wsafe.profile.v1", devid: "wsafe.devid.v1", cls: "wsafe.class.v1" };
+  var LS = { star: "wsafe.star.v2", done: "wsafe.done.v2", hist: "wsafe.hist.v2", theme: "wsafe.theme.v2", nick: "wsafe.nick.v1", sound: "wsafe.sound.v1", prof: "wsafe.profile.v1", a2hs: "wsafe.a2hs.v1", devid: "wsafe.devid.v1", cls: "wsafe.class.v1" };
 
   function lsGet(k, d) {
     try { var v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch (e) { return d; }
@@ -1669,6 +1669,40 @@
       renderHistory();
     });
   });
+
+  /* ---------- PWA：註冊 Service Worker ----------
+     只在 http(s) 下註冊；用 file:// 直接開檔時跳過（瀏覽器不允許）。 */
+  if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function () { /* 失敗不影響使用 */ });
+    });
+  }
+
+  /* ---------- 「加到主畫面」提示 ---------- */
+  (function installPrompt() {
+    var deferred = null;
+    window.addEventListener("beforeinstallprompt", function (e) {
+      e.preventDefault();
+      deferred = e;
+      if (lsGet(LS.a2hs, false)) return;        // 已按過「不再顯示」就不煩他
+      var bar = document.createElement("div");
+      bar.className = "a2hs";
+      bar.innerHTML = '<span class="a2hs-ico">📱</span>' +
+        '<div class="a2hs-txt"><b>裝到手機桌面</b><small>離線也能刷題，開啟更快</small></div>' +
+        '<button class="btn sm" id="a2hs-yes">安裝</button>' +
+        '<button class="a2hs-no" id="a2hs-no" aria-label="關閉">✕</button>';
+      document.body.appendChild(bar);
+      requestAnimationFrame(function () { bar.classList.add("show"); });
+      document.getElementById("a2hs-yes").addEventListener("click", function () {
+        bar.remove();
+        if (deferred) { deferred.prompt(); deferred = null; }
+      });
+      document.getElementById("a2hs-no").addEventListener("click", function () {
+        bar.remove();
+        lsSet(LS.a2hs, true);
+      });
+    });
+  })();
 
   /* ---------- 啟動 ---------- */
   bumpCounter("home", "cnt-home");    // 來訪人次 +1

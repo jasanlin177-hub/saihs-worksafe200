@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- 背景：與網站同色系的深色霓虹 -->
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#141436"/>
+      <stop offset="55%" stop-color="#0d0d24"/>
+      <stop offset="100%" stop-color="#1c0d2e"/>
+    </linearGradient>
+    <linearGradient id="helmet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffe066"/>
+      <stop offset="55%" stop-color="#ffd23f"/>
+      <stop offset="100%" stop-color="#e0a800"/>
+    </linearGradient>
+    <linearGradient id="brim" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffd23f"/>
+      <stop offset="100%" stop-color="#c98f00"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="10" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+
+  <!-- 背景網格，呼應網站的電玩風 -->
+  <g stroke="#00f0ff" stroke-opacity=".10" stroke-width="2">
+    <path d="M0 128h512M0 192h512M0 256h512M0 320h512M0 384h512"/>
+    <path d="M128 0v512M192 0v512M256 0v512M320 0v512M384 0v512"/>
+  </g>
+
+  <!-- 工地安全帽 -->
+  <g filter="url(#glow)">
+    <!-- 帽體 -->
+    <path d="M256 128c-62 0-112 46-112 108v22h224v-22c0-62-50-108-112-108z" fill="url(#helmet)"/>
+    <!-- 帽脊 -->
+    <path d="M256 128c-13 0-24 3-24 3v127h48V131s-11-3-24-3z" fill="#fff" fill-opacity=".34"/>
+    <!-- 帽簷 -->
+    <rect x="112" y="256" width="288" height="34" rx="17" fill="url(#brim)"/>
+    <!-- 高光 -->
+    <ellipse cx="206" cy="186" rx="26" ry="38" fill="#fff" fill-opacity=".28" transform="rotate(-18 206 186)"/>
+  </g>
+
+  <!-- 下方霓虹勾號：代表「答對／通過」 -->
+  <path d="M176 352l52 52 108-108" fill="none" stroke="#b6ff3b" stroke-width="30"
+        stroke-linecap="round" stroke-linejoin="round" filter="url(#glow)"/>
+</svg>

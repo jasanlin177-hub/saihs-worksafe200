@@ -1,0 +1,50 @@
+{
+  "name": "工安 × 工作倫理 速成闖關",
+  "short_name": "工安速成",
+  "description": "松山工農 機一仁｜勞動部官方固定題庫 200 題，做成電玩闖關風格的複習與測驗網站。",
+  "lang": "zh-Hant",
+  "start_url": "./?src=pwa",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0a0a1a",
+  "theme_color": "#0a0a1a",
+  "categories": ["education"],
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "PK 對戰",
+      "short_name": "PK",
+      "url": "./#pk"
+    },
+    {
+      "name": "闖關測驗",
+      "short_name": "測驗",
+      "url": "./#exam"
+    },
+    {
+      "name": "題庫 200",
+      "short_name": "題庫",
+      "url": "./#bank"
+    }
+  ]
+}
