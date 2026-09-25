@@ -26,12 +26,14 @@
 - **進度系統** — 金幣、經驗值、7 段位、12 種成就徽章、連續練習天數
 - **班級排行榜** — 輸入班級代號跨裝置比較
 - **使用統計** — 管理者專用報表，含「最常答錯題目 Top 20」
+- **PWA** — 可加到手機主畫面、全螢幕、**離線也能刷題**（題庫全數內嵌於 HTML）
 
 ## 專案結構
 
 ```
 .
 ├── 900060A10.pdf / 900070A19.pdf   官方題庫原始檔（資料來源）
+├── netlify.toml                    根目錄設定；自動部署預設跳過（見「部署」）
 ├── build/                          建置腳本與原始碼
 │   ├── build_data.py               PDF → questions.json（含 100 題硬性檢查）
 │   ├── assemble.py                 組裝成單一 index.html
@@ -39,11 +41,16 @@
 │   ├── app.js                      前端程式
 │   ├── ex/*.json                   200 題解析（分批檔案）
 │   ├── laws/*.json                 法規條文快取（查證用）
+│   ├── assets/                     均一 LOGO、App 圖示原始檔（icon.svg）
 │   └── fetch_laws.py               從全國法規資料庫抓條文
 ├── deploy/                         Netlify 部署包
-│   ├── public/index.html           建置產物
+│   ├── public/
+│   │   ├── index.html              建置產物
+│   │   ├── manifest.webmanifest    PWA 設定
+│   │   ├── sw.js                   Service Worker（離線快取）
+│   │   └── icon-192/512.png        App 圖示
 │   ├── netlify/functions/          排行榜、計數器、統計 API
-│   └── netlify.toml
+│   └── netlify.toml                publish／functions 路徑、MIME 與快取標頭
 └── index.html                      建置產物（與 deploy/public 相同）
 ```
 
@@ -55,13 +62,42 @@ python build/assemble.py       # 產生 index.html
 cp index.html deploy/public/   # 同步到部署包
 ```
 
+### ⚠️ 改動題庫或程式後，記得更新 Service Worker 版本
+
+`deploy/public/sw.js` 開頭有：
+
+```js
+const VERSION = "v1";
+```
+
+HTML 雖然採「網路優先」策略、通常能自動拿到新版，但**改版時仍應把版本號加一**
+（`v1` → `v2`），確保所有裝置的舊快取被清除。忘記更新可能導致部分使用者
+（特別是已安裝成 App、長時間離線的人）繼續看到舊題庫。
+
 ## 部署
+
+**自動部署已在 Netlify 後台關閉**（Build status = Stopped builds），
+GitHub push 僅作版控用途，不會觸發部署也不會消耗額度。
+要上線一律使用 CLI：
 
 ```bash
 cd deploy
-netlify deploy            # 預覽（0 credits）
-netlify deploy --prod     # 正式（15 credits／次，免費方案每月上限 20 次）
+netlify deploy            # 預覽（0 credits），會給一組臨時網址
+netlify deploy --prod     # 正式（15 credits／次）
 ```
+
+建議流程：本機驗證 → `netlify deploy` 預覽確認 → 才 `--prod` 正式上線。
+
+> 根目錄的 `netlify.toml` 設有 `ignore = "exit 0"`，即使日後重新開啟自動部署，
+> 預設也會跳過建置。曾發生後台 publish 路徑被寫成 Windows 絕對路徑而導致
+> 自動部署失敗，該欄位現已清空。
+
+### 正式部署後的檢查清單
+
+- `/manifest.webmanifest` 回傳 `application/manifest+json`（不是 octet-stream）
+- `/sw.js` 回傳 javascript 且 `Cache-Control: max-age=0`
+- `/api/counter`、`/api/leaderboard`、`/api/stats` 皆回 200
+- 手機開啟後可「加到主畫面」，安裝後為全螢幕
 
 ## 環境變數
 
