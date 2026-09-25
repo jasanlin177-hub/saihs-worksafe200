@@ -413,6 +413,38 @@ ul.tight li{margin:5px 0}
   border:1px solid rgba(255,255,255,.12);
   box-shadow:0 10px 30px rgba(0,0,0,.35);transition:transform .15s,box-shadow .15s}
 .junyi:hover{transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.45)}
+/* 官方 LOGO：原樣顯示，不變形不改色 */
+.jy-logo{display:block;margin:0 auto 16px;height:45px;width:auto;max-width:78%;object-fit:contain}
+
+/* 黑板示意插圖（純 CSS 繪製，非真人照片） */
+.jy-scene{position:relative;height:132px;margin:-6px auto 18px;max-width:330px}
+.jy-board{position:absolute;left:50%;top:0;transform:translateX(-50%);width:230px;height:104px;
+  background:linear-gradient(170deg,#2f5d4a,#24493a);border:7px solid #b07f4a;border-radius:6px;
+  box-shadow:inset 0 0 26px rgba(0,0,0,.4),0 6px 16px rgba(0,0,0,.3)}
+.jy-chalk{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px}
+.jy-chalk span{color:rgba(255,255,255,.82);font-weight:700;letter-spacing:2px;line-height:1}
+.jy-abc{font-size:17px}
+.jy-eq{font-size:14px;color:rgba(255,255,255,.62)!important}
+.jy-heart{font-size:15px;color:#ff9ec7!important}
+.jy-tray{position:absolute;left:-7px;right:-7px;bottom:-14px;height:8px;background:#96693a;border-radius:0 0 5px 5px;
+  display:flex;align-items:center;gap:5px;padding-left:18px}
+.jy-tray i{display:block;height:4px;border-radius:2px}
+.jy-chalk1{width:15px;background:#fff}
+.jy-chalk2{width:11px;background:#ffe9a8}
+.jy-eraser{width:14px;height:6px!important;background:#5a6b8c;border-radius:2px}
+/* 書本 */
+.jy-books{position:absolute;left:4px;bottom:0;display:flex;align-items:flex-end;gap:3px}
+.jy-books i{display:block;border-radius:2px 3px 3px 2px}
+.jy-books .b1{width:11px;height:40px;background:linear-gradient(90deg,#e4663f,#f08a5d)}
+.jy-books .b2{width:9px;height:32px;background:linear-gradient(90deg,#3f7fd4,#5b9ce4)}
+.jy-books .b3{width:13px;height:24px;background:linear-gradient(90deg,#f0b429,#ffd166)}
+/* 鉛筆 */
+.jy-pencil{position:absolute;right:8px;bottom:6px;width:52px;height:9px;border-radius:2px;
+  background:linear-gradient(90deg,#d9a441 0 72%,#f5d7a1 72% 86%,#4a4a4a 86% 100%);
+  transform:rotate(-13deg);box-shadow:0 2px 5px rgba(0,0,0,.3)}
+@media(max-width:480px){.jy-scene{height:112px;max-width:280px}
+  .jy-board{width:196px;height:88px}.jy-logo{height:38px}}
+
 .junyi h3{margin:0 0 14px;font-size:22px;font-weight:900;color:#fff;line-height:1.5}
 .junyi p{margin:0 auto 22px;font-size:15px;line-height:1.95;color:rgba(255,255,255,.93);max-width:640px}
 .junyi-btn{display:inline-block;background:#f0952a;color:#fff;font-size:17px;font-weight:900;
@@ -420,6 +452,18 @@ ul.tight li{margin:5px 0}
 .junyi:hover .junyi-btn{background:#ffa63d}
 .junyi-note{display:block;margin-top:18px;font-size:11.5px;color:rgba(255,255,255,.6);line-height:1.7}
 @media(max-width:480px){.junyi{padding:26px 18px 22px}.junyi h3{font-size:18px}.junyi p{font-size:14px}}
+
+/* 管理報表：錯題排行 */
+.wrongrow{display:flex;align-items:center;gap:14px;padding:11px 0;border-bottom:1px dashed var(--line)}
+.wrongrow:last-child{border-bottom:none}
+.wr-no{flex-shrink:0;width:30px;text-align:center;font-family:var(--f-num);font-size:17px;font-weight:900;color:var(--mut)}
+.wr-main{flex:1;min-width:0}
+.wr-main b{display:block;font-size:14.5px;font-weight:900;color:var(--cyan)}
+.wr-main small{display:block;font-size:12.5px;color:var(--sub);margin-top:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.wr-rate{flex-shrink:0;text-align:right}
+.wr-rate b{display:block;font-family:var(--f-num);font-size:20px;font-weight:900;color:var(--red)}
+.wr-rate small{font-size:11.5px;color:var(--mut)}
 
 /* 老式來訪計數器 */
 .counter{display:inline-flex;align-items:center;gap:10px;margin-top:14px;padding:9px 15px;
@@ -534,7 +578,7 @@ code{background:var(--chip);border:1px solid var(--line);border-radius:5px;paddi
 <div class="card"><h3 class="sub" style="margin-top:0">90007 工作倫理與職業道德</h3><table><thead><tr><th>官方題號</th><th>題目</th><th>答案</th></tr></thead><tbody><tr><td style="color:var(--mut);white-space:nowrap">第 67 題</td><td>菸害防制法規定，在禁菸場所吸菸者，處多少罰鍰？</td><td class="num">新臺幣 2 千元至 1 萬元罰鍰</td></tr><tr><td style="color:var(--mut);white-space:nowrap">第 94 題</td><td>目前菸害防制法規範，「不可販賣菸品」給未滿幾歲的人？</td><td class="num">20</td></tr><tr><td style="color:var(--mut);white-space:nowrap">第 99 題</td><td>禁菸場所負責人未於場所入口處設置明顯禁菸標示，依法可處新臺幣多少元罰鍰？</td><td class="num">1 萬至 5 萬</td></tr></tbody></table></div>
 <div class="counter hide"><span class="lbl">🔢 累計來訪</span><span class="digits" id="cnt-home"></span></div>
 <h2 class="sec">公益推廣</h2>
-<div class="ad-tag-row">公益廣告</div><a class="junyi" href="https://official.junyiacademy.org/#how-to-support" target="_blank" rel="noopener noreferrer"><h3>你的加入，將能協助更多孩子用教育點亮自己</h3><p>均一相信，每個孩子都值得擁有均等且獨一無二的機會，用自己的步調學習並累積學習自信，進而有勇氣走入真實世界面對挑戰，成就自己也成就他人。而這個理想還需要更多人一起投入，如果你願意，邀請你加入均一團隊，或是用每月小額捐款支持我們。</p><span class="junyi-btn">加入 / 支持均一</span><small class="junyi-note">均一平台教育基金會 · 公益勸募許可字號：衛部救字第 1141365149 號</small></a>
+<div class="ad-tag-row">公益廣告</div><a class="junyi" href="https://official.junyiacademy.org/#how-to-support" target="_blank" rel="noopener noreferrer"><div class="jy-scene" aria-hidden="true"><div class="jy-board"><div class="jy-chalk"><span class="jy-abc">A B C</span><span class="jy-eq">1 + 1 = 2</span><span class="jy-heart">♥</span></div><div class="jy-tray"><i class="jy-chalk1"></i><i class="jy-chalk2"></i><i class="jy-eraser"></i></div></div><div class="jy-books"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div><div class="jy-pencil"></div></div><img class="jy-logo" src="data:image/png;base64,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" alt="均一平台教育基金會" width="210" height="45"><h3>你的加入，將能協助更多孩子用教育點亮自己</h3><p>均一相信，每個孩子都值得擁有均等且獨一無二的機會，用自己的步調學習並累積學習自信，進而有勇氣走入真實世界面對挑戰，成就自己也成就他人。而這個理想還需要更多人一起投入，如果你願意，邀請你加入均一團隊，或是用每月小額捐款支持我們。</p><span class="junyi-btn">加入 / 支持均一</span><small class="junyi-note">均一平台教育基金會 · 公益勸募許可字號：衛部救字第 1141365149 號<br>標誌為均一平台教育基金會所有，取自其官方媒體素材，依原樣使用未經變形改色。本站與均一無隸屬關係。</small></a>
 <h2 class="sec">最後提醒</h2>
 <div class="card"><div class="good-note"><b>把 200 題練到看題目就知道答案，這科就滿分。</b>固定題庫的意義就在這裡——投入是有上限的，練完就結束了，不會有意外。</div><div class="trap"><b>注意題庫版本。</b>本站用的是 116年01月01日 起適用的版本（V115092210 / V115092219）。官方每年可能改版，考前建議到勞動力發展署網站確認版次是否相同；若有新版，把新的 PDF 放進專案資料夾重新建置即可。</div></div></div>
 </section>
@@ -1074,6 +1118,122 @@ const META = {"total":200,"papers":[{"file":"900060A10.pdf","code":"90006","subj
       });
   }
 
+  /* ================= 匿名使用統計 =================
+     只上報隨機裝置代號與行為次數，不含姓名、班級以外的個資。
+     連不上或離線都不影響使用（靜默失敗）。 */
+  var ST_API = "/api/stats";
+  var answerBuf = [];      // 答題結果暫存，批次送出以免每題都發請求
+
+  function statReport(extra) {
+    var body = { id: deviceId() };
+    for (var k in extra) body[k] = extra[k];
+    body.level = profile.level;
+    body.answered = profile.totalAnswered;
+    body.right = profile.totalRight;
+    if (answerBuf.length) { body.answers = answerBuf.slice(0, 120); answerBuf = []; }
+    try {
+      fetch(ST_API, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+        keepalive: true
+      }).catch(function () { });
+    } catch (e) { /* 忽略 */ }
+  }
+  function logAnswer(qid, right) {
+    answerBuf.push({ qid: qid, right: !!right });
+    if (answerBuf.length >= 20) statReport({});
+  }
+  // 離開頁面前把剩下的答題紀錄送出
+  window.addEventListener("pagehide", function () { if (answerBuf.length) statReport({}); });
+
+  /* ---------- 管理報表（網址加 ?admin=通關碼 才會出現） ---------- */
+  function maybeShowAdmin() {
+    var m = /[?&]admin=([^&#]+)/.exec(location.search);
+    if (!m) return;
+    var key = decodeURIComponent(m[1]);
+    var host = document.createElement("section");
+    host.className = "page on";
+    host.id = "page-admin";
+    host.innerHTML = '<div class="wrap"><h1 class="ph">使用統計報表</h1>' +
+      '<p class="lead">匿名統計，僅供改版參考。此頁只有帶通關碼的網址看得到。</p>' +
+      '<div id="admin-box"><div class="empty">讀取中…</div></div></div>';
+    document.body.insertBefore(host, document.querySelector(".foot"));
+    ["home", "bank", "exam", "pk", "hist"].forEach(function (p) {
+      var el = document.getElementById("page-" + p);
+      if (el) el.classList.remove("on");
+    });
+
+    fetch(ST_API + "?key=" + encodeURIComponent(key), { cache: "no-store" })
+      .then(function (r) {
+        if (r.status === 401) throw new Error("通關碼不正確");
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(function (d) { paintAdmin(d); })
+      .catch(function (e) {
+        document.getElementById("admin-box").innerHTML =
+          '<div class="empty" style="color:var(--red)">讀取失敗：' + esc(e.message) + "</div>";
+      });
+  }
+
+  function paintAdmin(d) {
+    var FEAT = { home: "速成讀本", bank: "題庫", exam: "闖關測驗", pk: "PK 對戰", hist: "我的戰績" };
+    var html = '<div class="rescards">' +
+      '<div class="rescard"><b style="color:var(--cyan)">' + d.users + "</b><span>累計使用人數</span></div>" +
+      '<div class="rescard"><b style="color:var(--lime)">' + d.returning + "</b><span>回訪人數</span></div>" +
+      '<div class="rescard"><b style="color:var(--amber)">' + d.todayActive + "</b><span>今日使用人數</span></div>" +
+      '<div class="rescard"><b style="color:var(--pink)">' + d.avgLevel + "</b><span>平均等級</span></div></div>";
+
+    html += '<div class="rescards">' +
+      '<div class="rescard"><b>' + d.avgAnswered + "</b><span>人均答題數</span></div>" +
+      '<div class="rescard"><b>' + d.avgAccuracy + "%</b><span>平均正確率</span></div>" +
+      '<div class="rescard"><b>' + (d.users ? Math.round(d.returning / d.users * 100) : 0) + "%</b><span>回訪率</span></div></div>";
+
+    // 功能使用次數
+    var fk = Object.keys(d.features || {});
+    if (fk.length) {
+      var fmax = Math.max.apply(null, fk.map(function (k) { return d.features[k]; }));
+      html += '<h2 class="sec">各功能使用次數</h2><div class="card">';
+      fk.sort(function (a, b) { return d.features[b] - d.features[a]; }).forEach(function (k) {
+        html += '<div class="bar"><div class="lab"><b>' + esc(FEAT[k] || k) + "</b><span>" + d.features[k] + " 次</span></div>" +
+          '<div class="track"><div class="fill" style="width:' + (d.features[k] / fmax * 100) + '%"></div></div></div>';
+      });
+      html += "</div>";
+    }
+
+    // 每日活躍
+    if ((d.daily || []).length) {
+      var dmax = Math.max.apply(null, d.daily.map(function (x) { return x.n; }));
+      html += '<h2 class="sec">每日使用人數（近 30 天）</h2><div class="card">';
+      d.daily.slice().reverse().forEach(function (x) {
+        html += '<div class="bar"><div class="lab"><b>' + esc(x.d) + "</b><span>" + x.n + " 人</span></div>" +
+          '<div class="track"><div class="fill" style="width:' + (x.n / dmax * 100) + '%"></div></div></div>';
+      });
+      html += "</div>";
+    }
+
+    // 最常答錯題目
+    html += '<h2 class="sec">最常答錯的題目 Top 20</h2>';
+    if (!(d.topWrong || []).length) {
+      html += '<div class="empty">資料還不夠（每題至少要被作答 3 次才會列入）。</div>';
+    } else {
+      html += '<p class="lead">這是全班的弱點清單，可以拿來決定上課要加強哪裡。</p><div class="card">';
+      d.topWrong.forEach(function (w, i) {
+        var q = BY_ID_ALL[w.qid];
+        html += '<div class="wrongrow"><div class="wr-no">' + (i + 1) + "</div>" +
+          '<div class="wr-main"><b>' + (q ? esc(q.short + " 第 " + q.num + " 題") : esc(w.qid)) + "</b>" +
+          "<small>" + (q ? esc(q.stem.slice(0, 56)) + (q.stem.length > 56 ? "…" : "") : "") + "</small></div>" +
+          '<div class="wr-rate"><b>' + Math.round(w.rate * 100) + "%</b><small>" + w.wrong + "/" + w.shown + " 錯</small></div></div>";
+      });
+      html += "</div>";
+    }
+    document.getElementById("admin-box").innerHTML = html;
+  }
+
+  var BY_ID_ALL = {};
+  QUESTIONS.forEach(function (q) { BY_ID_ALL[q.id] = q; });
+
   /* ---------- 音效開關 ---------- */
   (function () {
     var btn = document.getElementById("sound");
@@ -1109,6 +1269,7 @@ const META = {"total":200,"papers":[{"file":"900060A10.pdf","code":"90006","subj
       clearTimeout(pkState.cpuTimer);
       pkState.running = false;
     }
+    statReport({ page: name });
     if (name === "hist") renderHistory();
     if (name === "exam" && !examState.running) renderExamHome();
     if (name === "pk" && !pkState.running) renderPkHome();
@@ -1250,6 +1411,7 @@ const META = {"total":200,"papers":[{"file":"900060A10.pdf","code":"90006","subj
           recordAnswers(ok ? 1 : 0, 1);
           addXp(ok ? 3 : 1, ok ? 1 : 0);
           if (comboCount >= 10) grantBadge("combo10");
+          logAnswer(q.id, ok);
           if (profile.maxCombo < comboCount) { profile.maxCombo = comboCount; saveProfile(); }
           flushToasts();
           if (!ok && el._openEx) el._openEx();   // 答錯自動展開解析
@@ -1510,6 +1672,7 @@ const META = {"total":200,"papers":[{"file":"900060A10.pdf","code":"90006","subj
     var exXp = Math.round(right * 6 + (pass ? 60 : 0) + (rank === "S" ? 80 : 0));
     var exCoin = Math.round(right * 2 + (pass ? 30 : 0));
     recordAnswers(right, st.qs.length);
+    st.qs.forEach(function (q, i) { logAnswer(q.id, st.ans[i] === q.answer); });
     if (rank === "S") grantBadge("rank_s");
     if (st.mode === "s_all" && right === st.qs.length) grantBadge("safety_full");
     if (st.mode === "e_all" && right === st.qs.length) grantBadge("ethics_full");
@@ -1860,6 +2023,7 @@ const META = {"total":200,"papers":[{"file":"900060A10.pdf","code":"90006","subj
 
     // 記下本題作答結果，供結束後的複習區使用
     st.log.push({ q: q, pick: pick, right: right, gain: gain });
+    logAnswer(q.id, right);
 
     // 電腦結算：若玩家搶先答完、電腦還在思考，電腦仍依自己的正確率決定對錯
     // （只是拿不到速度分）。不能因為玩家快就判電腦失敗，否則玩家一快電腦就被秒殺。
@@ -2158,6 +2322,8 @@ const META = {"total":200,"papers":[{"file":"900060A10.pdf","code":"90006","subj
 
   /* ---------- 啟動 ---------- */
   bumpCounter("home", "cnt-home");    // 來訪人次 +1
+  statReport({ newVisit: true, page: "home" });
+  maybeShowAdmin();
   var ch = decodeChallenge(location.hash);
   if (ch) {
     // 有人丟戰帖過來：直接跳到 PK 頁並顯示戰帖

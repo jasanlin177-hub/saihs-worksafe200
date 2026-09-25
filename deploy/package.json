@@ -1,0 +1,10 @@
+{
+  "name": "saihs-worksafe200",
+  "version": "1.0.0",
+  "private": true,
+  "description": "松山工農 工場安全衛生 × 工作倫理 固定題庫速成站",
+  "type": "module",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}

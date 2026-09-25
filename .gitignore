@@ -1,0 +1,21 @@
+# 相依套件（Netlify 會自行安裝）
+node_modules/
+
+# Netlify CLI 本機連結資訊（含 site id，不需進版控）
+.netlify/
+
+# Python 快取
+__pycache__/
+*.pyc
+
+# 建置中間產物（可由 build_data.py 重新產生）
+build/questions_raw.json
+
+# 系統檔
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# 環境變數（若之後有本機測試用的設定檔）
+.env
+.env.*

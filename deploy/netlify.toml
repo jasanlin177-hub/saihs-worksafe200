@@ -1,0 +1,38 @@
+# Netlify 部署設定
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+# Function 走預設路徑 /.netlify/functions/<檔名>，這裡把 /api/* 轉過去。
+# 這條必須排在萬用重導之前，force = true 確保優先套用。
+[[redirects]]
+  from = "/api/counter"
+  to = "/.netlify/functions/counter"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/leaderboard"
+  to = "/.netlify/functions/leaderboard"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/stats"
+  to = "/.netlify/functions/stats"
+  status = 200
+  force = true
+
+# 其餘路徑都回到 index.html，避免直接開 /#exam 之類網址時 404
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    # 題庫會改版，不讓瀏覽器長時間快取舊版
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
