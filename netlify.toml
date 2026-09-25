@@ -1,60 +1,22 @@
-functionsDirectory = "C:\\Users\\機動小隊\\Projects\\工安題庫\\deploy\\netlify\\functions"
-functionsDirectoryOrigin = "config-v1"
-headersOrigin = "config"
-redirectsOrigin = "config"
-plugins = []
+# repo 根目錄的 Netlify 設定。
+#
+# 本專案採「CLI 手動部署」，GitHub 只作版控用，自動部署已於 Netlify 後台關閉
+# （免費方案每次 production deploy 耗 15 credits，每月上限約 20 次，
+#   若每次 push 都部署會很快用完，額度用盡整個站台會被暫停）。
+#
+# 這份檔案存在的用途是：萬一自動部署被重新開啟，也能用正確的相對路徑建置，
+# 不會再誤用先前寫進後台設定的 Windows 絕對路徑。
+#
+# 實際部署方式：
+#   cd deploy
+#   netlify deploy          # 預覽，0 credits
+#   netlify deploy --prod   # 正式，15 credits
 
 [build]
-publish = "C:\\Users\\機動小隊\\Projects\\工安題庫\\deploy\\public"
-publishOrigin = "config"
-functions = "C:\\Users\\機動小隊\\Projects\\工安題庫\\deploy\\netlify\\functions"
+  base = "deploy"
+  publish = "public"
+  functions = "netlify/functions"
 
-  [build.environment]
-
-  [build.processing]
-
-    [build.processing.css]
-
-    [build.processing.html]
-
-    [build.processing.images]
-
-    [build.processing.js]
-
-  [build.services]
-
-[functions]
-
-  [functions."*"]
-
-[[headers]]
-for = "/index.html"
-
-  [headers.values]
-  Cache-Control = "public, max-age=0, must-revalidate"
-  X-Content-Type-Options = "nosniff"
-  Referrer-Policy = "strict-origin-when-cross-origin"
-
-[[redirects]]
-from = "/api/*"
-to = "/.netlify/functions/:splat"
-status = 200
-force = true
-
-  [redirects.query]
-
-  [redirects.conditions]
-
-  [redirects.headers]
-
-[[redirects]]
-from = "/*"
-to = "/index.html"
-status = 200
-force = false
-
-  [redirects.query]
-
-  [redirects.conditions]
-
-  [redirects.headers]
+# 預設跳過自動建置；需要時把這行註解掉即可恢復。
+# exit 0 代表「內容沒變化」，Netlify 會跳過本次建置。
+  ignore = "exit 0"
